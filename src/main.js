@@ -7,6 +7,7 @@ import './registerServiceWorker'
 import {
   LayoutPlugin,
   IconsPlugin,
+  InputGroupPlugin,
   FormGroupPlugin,
   FormInputPlugin,
   FormDatepickerPlugin,
@@ -21,6 +22,7 @@ Vue.config.productionTip = false
 
 Vue.use(LayoutPlugin)
 Vue.use(IconsPlugin)
+Vue.use(InputGroupPlugin)
 Vue.use(FormGroupPlugin)
 Vue.use(FormInputPlugin)
 Vue.use(FormDatepickerPlugin)
