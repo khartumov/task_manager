@@ -35,6 +35,16 @@
           <TaskList />
         </b-col>
       </b-row>
+      <router-link
+        to="/newtask"
+        class="tasks__add-new"
+      >
+        <b-icon
+          class="tasks__add-new-icon"
+          icon="plus"
+          font-scale="3"
+        />
+      </router-link>
     </b-container>
   </div>
 </template>
@@ -73,8 +83,37 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .tasks {
     padding-top: 25px;
+
+    &__add-new {
+      position: fixed;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 40px;
+      right: 40px;
+      background: #2c3e50;
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      transition: all 0.3s;
+
+      @media (max-width: 768px) {
+        height: 45px;
+        width: 45px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
+        transform: rotate(180deg);
+      }
+    }
+
+    &__add-new-icon {
+      color: #fff;
+    }
   }
 </style>
