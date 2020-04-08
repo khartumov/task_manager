@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Список задач</h1>
+    <h1 class="title">Список задач</h1>
     <b-container class="tasks">
       <b-row>
         <b-col

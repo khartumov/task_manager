@@ -44,7 +44,7 @@ export default {
     transition: all 0.3s;
     border: 1px solid #808890;
     border-radius: 0.25rem;
-    background: #e9ecef;
+    background: #f5f5f5;
 
     &:hover {
       transform: scale(1.03);
