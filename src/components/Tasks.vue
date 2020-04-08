@@ -37,12 +37,12 @@
       </b-row>
       <router-link
         to="/newtask"
-        class="tasks__add-new"
+        class="round-button"
       >
         <b-icon
-          class="tasks__add-new-icon"
+          class="round-button__icon"
           icon="plus"
-          font-scale="3"
+          font-scale="2"
         />
       </router-link>
     </b-container>
@@ -87,33 +87,5 @@ export default {
   .tasks {
     padding-top: 25px;
 
-    &__add-new {
-      position: fixed;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      bottom: 40px;
-      right: 40px;
-      background: #2c3e50;
-      height: 70px;
-      width: 70px;
-      border-radius: 50%;
-      transition: all 0.3s;
-
-      @media (max-width: 768px) {
-        height: 45px;
-        width: 45px;
-      }
-
-      &:hover {
-        box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
-        transform: rotate(180deg);
-      }
-    }
-
-    &__add-new-icon {
-      color: #fff;
-    }
   }
 </style>

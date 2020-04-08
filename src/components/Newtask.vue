@@ -52,6 +52,16 @@
           </b-button>
         </b-col>
       </b-row>
+      <router-link
+        to="/"
+        class="round-button round-button_back"
+      >
+        <b-icon
+          class="round-button__icon"
+          icon="arrow-left"
+          font-scale="2"
+        />
+      </router-link>
     </b-container>
   </div>
 </template>
