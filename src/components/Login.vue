@@ -15,6 +15,7 @@
             >
               <b-form-input
                 id="login__email"
+                ref="email"
                 v-model.trim="email"
                 type="email"
                 trim
@@ -68,6 +69,10 @@ export default {
         this.$router.push('/')
       } catch (error) {}
     }
+  },
+
+  mounted () {
+    this.$refs.email.focus()
   }
 }
 </script>

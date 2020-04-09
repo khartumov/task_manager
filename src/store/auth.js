@@ -4,7 +4,6 @@ export default {
   actions: {
     async login ({ dispatch, commit }, { email, password }) {
       await firebase.auth().signInWithEmailAndPassword(email, password)
-
       // TODO
       // try {
       //   await firebase.auth().signInWithEmailAndPassword(email, password)
@@ -13,6 +12,9 @@ export default {
       //   console.log(e)
       //   throw e
       // }
+    },
+    logout () {
+      // TODO
     }
   }
 }

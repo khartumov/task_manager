@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase/app'
 
 import Tasks from './components/Tasks.vue'
 import Newtask from './components/Newtask.vue'
@@ -35,9 +36,10 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  const isAurhRequired = to.matched.some((route) => route.meta.auth)
+  const currentUser = firebase.auth().currentUser
+  const isAuthRequired = to.matched.some((route) => route.meta.auth)
 
-  if (isAurhRequired) {
+  if (isAuthRequired && !currentUser) {
     next('/login')
   } else {
     next()
