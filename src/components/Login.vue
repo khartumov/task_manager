@@ -7,36 +7,38 @@
           lg="10"
           offset-lg="1"
         >
-          <b-form-group
-            class="login__label"
-            label="Введите email"
-            label-for="login__email"
-          >
-            <b-form-input
-              id="login__email"
-              v-model="email"
-              type="email"
-              trim
-            />
-          </b-form-group>
-          <b-form-group
-            class="login__password"
-            label="Введите пароль"
-            label-for="login__password"
-          >
-            <b-form-input
-              id="login__password"
-              type="password"
-              v-model="password"
-              trim
-            />
-          </b-form-group>
-          <b-button
-            class="text-left mt-3"
-            @click="login"
-          >
-            Войти
-          </b-button>
+          <form action="">
+            <b-form-group
+              class="login__label"
+              label="Введите email"
+              label-for="login__email"
+            >
+              <b-form-input
+                id="login__email"
+                v-model.trim="email"
+                type="email"
+                trim
+              />
+            </b-form-group>
+            <b-form-group
+              class="login__password"
+              label="Введите пароль"
+              label-for="login__password"
+            >
+              <b-form-input
+                id="login__password"
+                type="password"
+                v-model="password"
+                trim
+              />
+            </b-form-group>
+            <b-button
+              class="text-left mt-3"
+              @click="login"
+            >
+              Войти
+            </b-button>
+          </form>
         </b-col>
       </b-row>
     </b-container>
@@ -45,6 +47,8 @@
 
 <script>
 export default {
+  name: 'login',
+
   data () {
     return {
       email: '',
@@ -53,8 +57,16 @@ export default {
   },
 
   methods: {
-    login () {
-      // TODO: login
+    async login () {
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+
+      try {
+        await this.$store.dispatch('login', formData)
+        this.$router.push('/')
+      } catch (error) {}
     }
   }
 }

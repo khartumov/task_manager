@@ -51,10 +51,14 @@ Vue.filter('status', statusFilter)
 
 firebase.initializeApp(firebaseConfig)
 
-// firebase.auth().onAuthStateChanged(()=> {})
+let app = null
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})

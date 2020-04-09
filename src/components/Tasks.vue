@@ -53,6 +53,8 @@
 import TaskList from './TaskList'
 
 export default {
+  name: 'tasks',
+
   components: {
     TaskList
   },

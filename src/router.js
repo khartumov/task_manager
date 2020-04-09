@@ -7,17 +7,23 @@ import Login from './components/Login.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'tasks',
+      meta: {
+        auth: true
+      },
       component: Tasks
     },
     {
       path: '/newtask',
       name: 'newtask',
+      meta: {
+        auth: true
+      },
       component: Newtask
     },
     {
@@ -27,3 +33,15 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const isAurhRequired = to.matched.some((route) => route.meta.auth)
+
+  if (isAurhRequired) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+export default router

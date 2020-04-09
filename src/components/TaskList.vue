@@ -18,6 +18,8 @@
 <script>
 
 export default {
+  name: 'newtask',
+
   data () {
     return {
       tasks: [
