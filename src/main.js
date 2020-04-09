@@ -18,6 +18,9 @@ import {
   TooltipPlugin
 } from 'bootstrap-vue'
 
+import dateFilter from '@/filters/dateFilter'
+import statusFilter from '@/filters/statusFilter'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'v-markdown-editor/dist/v-markdown-editor.css'
@@ -37,6 +40,9 @@ Vue.use(TooltipPlugin)
 
 Vue.use(Editor)
 Vue.use(VueSimpleMarkdown)
+
+Vue.filter('date', dateFilter)
+Vue.filter('status', statusFilter)
 
 new Vue({
   router,

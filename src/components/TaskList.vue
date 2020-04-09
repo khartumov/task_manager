@@ -1,23 +1,15 @@
 <template>
   <div class="tasklist pt-4 pt-4">
     <a
+      v-for="(task, index) in tasks"
+      :key="`${task}_${index}`"
       href="#"
       class="task mb-2 p-3"
     >
-      <span class="task__title">Первая задача</span>
+      <span class="task__title">{{ task.title }}</span>
       <div class="task__info">
-        <span class="task__date">20.04.2020</span>
-        <em class="task__status">В работе</em>
-      </div>
-    </a>
-    <a
-      href="#"
-      class="task mb-2 p-3"
-    >
-      <span class="task__title">Вторая задача</span>
-      <div class="task__info">
-        <span class="task__date">03.04.2020</span>
-        <em class="task__status">Просрочена</em>
+        <span class="task__date">{{ task.date | date }}</span>
+        <em class="task__status">{{ task.status | status }}</em>
       </div>
     </a>
   </div>
@@ -28,7 +20,26 @@
 export default {
   data () {
     return {
-
+      tasks: [
+        {
+          id: 1,
+          title: 'Первая задача',
+          date: new Date(2020, 7, 7),
+          status: 'progress'
+        },
+        {
+          id: 2,
+          title: 'Вторая задача',
+          date: new Date(2020, 3, 7),
+          status: 'expired'
+        },
+        {
+          id: 3,
+          title: ' Третья задача',
+          date: new Date(2020, 2, 6),
+          status: 'completed'
+        }
+      ]
     }
   }
 }
