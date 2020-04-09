@@ -26,6 +26,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'v-markdown-editor/dist/v-markdown-editor.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+import firebaseConfig from '@/firebaseConfig'
+
 Vue.config.productionTip = false
 
 Vue.use(LayoutPlugin)
@@ -43,6 +48,10 @@ Vue.use(VueSimpleMarkdown)
 
 Vue.filter('date', dateFilter)
 Vue.filter('status', statusFilter)
+
+firebase.initializeApp(firebaseConfig)
+
+// firebase.auth().onAuthStateChanged(()=> {})
 
 new Vue({
   router,
