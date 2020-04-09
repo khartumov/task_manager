@@ -14,7 +14,7 @@
           >
             <b-form-input
               id="login__email"
-              v-model="title"
+              v-model="email"
               type="email"
               trim
             />
@@ -27,7 +27,7 @@
             <b-form-input
               id="login__password"
               type="password"
-              v-model="title"
+              v-model="password"
               trim
             />
           </b-form-group>
@@ -47,7 +47,8 @@
 export default {
   data () {
     return {
-
+      email: '',
+      password: ''
     }
   },
 
