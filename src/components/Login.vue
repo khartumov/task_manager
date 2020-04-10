@@ -66,6 +66,8 @@ export default {
 
       try {
         await this.$store.dispatch('login', formData)
+
+        // TODO: error message
         this.$router.push('/')
       } catch (error) {}
     }

@@ -7,23 +7,16 @@
           md="6"
           offset-md="1"
         >
-          <b-input-group size="md" class="mb-2">
-          <b-input-group-prepend is-text>
-            <b-icon icon="search"></b-icon>
-          </b-input-group-prepend>
-          <b-form-input
-            class="tasks__search"
-            type="search"
-            placeholder="Поиск по названию..."
+          <Search
+            @searchByTitle="filterByTitle"
           />
-          </b-input-group>
         </b-col>
         <b-col
           md="4"
         >
           <b-form-select
-            v-model="selected"
-            :options="options"
+            v-model="selectedStatus"
+            :options="statusList"
           />
         </b-col>
       </b-row>
@@ -32,7 +25,9 @@
           lg="10"
           offset-lg="1"
         >
-          <TaskList />
+          <TaskList
+            :tasks="filteredTasks"
+          />
         </b-col>
       </b-row>
       <router-link
@@ -50,19 +45,21 @@
 </template>
 
 <script>
-import TaskList from './TaskList'
+import TaskList from '@/components/TaskList'
+import Search from '@/components/Search'
 
 export default {
   name: 'tasks',
 
   components: {
-    TaskList
+    TaskList,
+    Search
   },
 
   data () {
     return {
-      selected: null,
-      options: [
+      selectedStatus: null,
+      statusList: [
         {
           value: null,
           text: 'Все'
@@ -79,8 +76,47 @@ export default {
           value: 'completed',
           text: 'Завершенные'
         }
-      ]
+      ],
+      tasks: [
+        {
+          id: 1,
+          title: 'Первая задача',
+          date: new Date(2020, 7, 7),
+          status: 'progress'
+        },
+        {
+          id: 2,
+          title: 'Вторая задача',
+          date: new Date(2020, 3, 7),
+          status: 'expired'
+        },
+        {
+          id: 3,
+          title: 'Третья задача',
+          date: new Date(2020, 2, 6),
+          status: 'completed'
+        },
+        {
+          id: 4,
+          title: 'Четвертая задача',
+          date: new Date(2020, 8, 23),
+          status: 'progress'
+        }
+      ],
+      filteredTasks: []
     }
+  },
+
+  methods: {
+    filterByTitle (searchText) {
+      this.filteredTasks = this.tasks.filter(({ title }) => {
+        return title.toLowerCase().includes(searchText.toLowerCase())
+      })
+    }
+  },
+
+  mounted () {
+    this.filteredTasks = [].concat(this.tasks)
   }
 }
 </script>
@@ -88,6 +124,5 @@ export default {
 <style lang="less" scoped>
   .tasks {
     padding-top: 25px;
-
   }
 </style>

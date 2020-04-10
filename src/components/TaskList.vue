@@ -18,30 +18,10 @@
 <script>
 
 export default {
-  name: 'newtask',
-
-  data () {
-    return {
-      tasks: [
-        {
-          id: 1,
-          title: 'Первая задача',
-          date: new Date(2020, 7, 7),
-          status: 'progress'
-        },
-        {
-          id: 2,
-          title: 'Вторая задача',
-          date: new Date(2020, 3, 7),
-          status: 'expired'
-        },
-        {
-          id: 3,
-          title: ' Третья задача',
-          date: new Date(2020, 2, 6),
-          status: 'completed'
-        }
-      ]
+  props: {
+    tasks: {
+      type: Array,
+      default: () => ([])
     }
   }
 }
