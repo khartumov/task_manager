@@ -1,17 +1,26 @@
 <template>
   <div class="tasklist pt-4 pt-4">
-    <a
+    <router-link
       v-for="(task, index) in tasks"
-      :key="`${task}_${index}`"
-      href="#"
-      class="task mb-2 p-3"
+      :key="`${task.title}_${index}`"
+      :to="{
+        name: 'singletask',
+        params: {
+          id: task.id,
+          title: task.title,
+          date: task.date,
+          status: task.status,
+          text: task.text
+        }
+      }"
+      class="tasklist__item mb-2 p-3"
     >
-      <span class="task__title">{{ task.title }}</span>
-      <div class="task__info">
-        <span class="task__date">{{ task.date | date }}</span>
-        <em class="task__status">{{ task.status | status }}</em>
+      <span class="tasklist__title">{{ task.title }}</span>
+      <div class="tasklist__info">
+        <span class="tasklist__date">{{ task.date | date }}</span>
+        <em class="tasklist__status">{{ task.status | status }}</em>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -28,22 +37,24 @@ export default {
 </script>
 
 <style lang="less">
-  .task {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    color: #2c3e50;
-    box-shadow: 0 0 2px 0 rgba(50, 50, 50, 0.75);
-    transition: all 0.3s;
-    border: 1px solid #808890;
-    border-radius: 0.25rem;
-    background: #f5f5f5;
-
-    &:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 4px 0 rgba(50, 50, 50, 0.75);
-      text-decoration: none;
+  .tasklist {
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
       color: #2c3e50;
+      box-shadow: 0 0 2px 0 rgba(50, 50, 50, 0.75);
+      transition: all 0.3s;
+      border: 1px solid #808890;
+      border-radius: 0.25rem;
+      background: #f5f5f5;
+
+      &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 4px 0 rgba(50, 50, 50, 0.75);
+        text-decoration: none;
+        color: #2c3e50;
+      }
     }
 
     &__title {

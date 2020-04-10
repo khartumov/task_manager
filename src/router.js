@@ -5,6 +5,7 @@ import firebase from 'firebase/app'
 import Tasks from './components/Tasks.vue'
 import Newtask from './components/Newtask.vue'
 import Login from './components/Login.vue'
+import Singletask from './components/Singletask.vue'
 
 Vue.use(Router)
 
@@ -31,6 +32,14 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/:id',
+      name: 'singletask',
+      meta: {
+        auth: true
+      },
+      component: Singletask
     }
   ]
 })

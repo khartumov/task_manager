@@ -44,7 +44,6 @@
             />
           </b-form-group>
           <b-button
-            class="text-left"
             :disabled="!titleState || !dateState"
             @click="createNewTask"
           >
