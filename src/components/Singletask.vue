@@ -9,14 +9,14 @@
         >
           <p class="singletask__row singletask__date"><strong>Дедлайн</strong><em>{{$route.params.date | date}}</em></p>
           <p class="singletask__row singletask__status"><strong>Статус</strong><em>{{$route.params.status | status}}</em></p>
-
-          <strong>Описание</strong>
-          <div class="singletask__text my-3">
-            <vue-simple-markdown
-              :source="$route.params.text"
-            />
-          </div>
-
+          <template v-if="$route.params.text">
+            <strong>Описание</strong>
+            <div class="singletask__text my-3">
+              <vue-simple-markdown
+                :source="$route.params.text"
+              />
+            </div>
+          </template>
           <b-button
             @click="completeTask"
           >
