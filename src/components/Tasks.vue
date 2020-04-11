@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title">Список задач</h1>
-    <b-container class="tasks">
+    <b-container class="tasks pt-3">
       <b-row>
         <b-col
           md="6"
@@ -94,34 +94,29 @@ export default {
           status: 'completed'
         }
       ],
-      filteredTasks: []
+      filterOptions: {
+        text: '',
+        status: null
+      }
+    }
+  },
+
+  computed: {
+    filteredTasks () {
+      return this.tasks
+        .filter(({ title }) => this.filterOptions.text === '' ? title : title.toLowerCase().includes(this.filterOptions.text))
+        .filter(({ status }) => this.filterOptions.status === null ? status : status === this.filterOptions.status)
     }
   },
 
   methods: {
     filterByTitle (searchText) {
-      this.filteredTasks = this.tasks.filter(({ title }) => {
-        return title.toLowerCase().includes(searchText.toLowerCase())
-      })
+      this.filterOptions.text = searchText.toLowerCase()
     },
 
     filterByStatus (selectedStatus) {
-      if (selectedStatus) {
-        this.filteredTasks = this.tasks.filter(({ status }) => status === selectedStatus)
-      } else {
-        this.filteredTasks = this.tasks
-      }
+      this.filterOptions.status = selectedStatus
     }
-  },
-
-  mounted () {
-    this.filteredTasks = [].concat(this.tasks)
   }
 }
 </script>
-
-<style lang="less" scoped>
-  .tasks {
-    padding-top: 25px;
-  }
-</style>
