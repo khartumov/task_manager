@@ -76,6 +76,7 @@ body {
   text-align: center;
 }
 
+// TODO: move to component
 .round-button {
   position: fixed;
   z-index: 100;
@@ -100,6 +101,11 @@ body {
     left: 40px;
   }
 
+  &_grey {
+    background: #f5f5f5;
+    border: 1px solid #2c3e50;
+  }
+
   &:hover {
     box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
     transform: scale(1.03);
@@ -107,6 +113,10 @@ body {
 
   &__icon {
     color: #fff;
+
+    &_grey {
+      color: #2c3e50;
+    }
   }
 }
 </style>

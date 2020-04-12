@@ -23,6 +23,16 @@
           <TaskList :tasks="filteredTasks" />
         </b-col>
       </b-row>
+      <button
+        class="round-button round-button_back round-button_grey"
+        @click="logout"
+      >
+        <b-icon
+          class="round-button__icon round-button__icon_grey"
+          icon="box-arrow-left"
+          font-scale="2"
+        />
+      </button>
       <router-link
         to="/newtask"
         class="round-button"
@@ -116,6 +126,10 @@ export default {
 
     filterByStatus (selectedStatus) {
       this.filterOptions.status = selectedStatus
+    },
+
+    logout () {
+      // TODO: logout
     }
   }
 }
