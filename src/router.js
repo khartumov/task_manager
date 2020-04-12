@@ -6,6 +6,7 @@ import Tasks from './components/Tasks.vue'
 import Newtask from './components/Newtask.vue'
 import Login from './components/Login.vue'
 import Singletask from './components/Singletask.vue'
+import EditTask from './components/EditTask.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,14 @@ const router = new Router({
         auth: true
       },
       component: Singletask
+    },
+    {
+      path: '/:id/edit',
+      name: 'edittask',
+      meta: {
+        auth: true
+      },
+      component: EditTask
     }
   ]
 })

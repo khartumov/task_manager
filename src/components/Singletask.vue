@@ -17,14 +17,20 @@
               />
             </div>
           </template>
-          <b-button
-            @click="completeTask"
-          >
-            Завершить задачу
-          </b-button>
+          <div class="singletask__buttons">
+            <b-button
+              @click="completeTask"
+            >
+              Завершить задачу
+            </b-button>
+            <b-button
+              @click="editTask"
+            >
+              Редактировать задачу
+            </b-button>
+          </div>
         </b-col>
       </b-row>
-
       <router-link
         to="/"
         class="round-button round-button_back"
@@ -47,6 +53,19 @@ export default {
   methods: {
     completeTask () {
       // TODO: completeTask
+    },
+
+    editTask () {
+      this.$router.push({
+        name: 'edittask',
+        params: {
+          id: this.$route.params.id,
+          title: this.$route.params.title,
+          date: this.$route.params.date,
+          status: this.$route.params.status,
+          text: this.$route.params.text
+        }
+      })
     }
   }
 }
@@ -63,6 +82,11 @@ export default {
       padding: 30px;
       border-radius: 0.25rem;
       background: #f5f5f5;
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>
