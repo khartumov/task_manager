@@ -39,7 +39,7 @@
           >
             <markdown-editor
               id="newtask__editor"
-              v-model="editor"
+              v-model="text"
               toolbar="bold italic heading | undo redo | link numlist bullist | fullscreen"
             />
           </b-form-group>
@@ -74,7 +74,7 @@ export default {
     return {
       title: '',
       date: '',
-      editor: ''
+      text: ''
     }
   },
   computed: {
@@ -89,9 +89,11 @@ export default {
     invalidFeedback () {
       if (this.title.length > 5) {
         return ''
-      } else if (this.title.length >= 0) {
+      }
+      else if (this.title.length >= 0) {
         return 'Минимум 5 символов'
-      } else {
+      }
+      else {
         return 'Введите название'
       }
     }
@@ -102,8 +104,15 @@ export default {
   },
 
   methods: {
-    createNewTask () {
-      // TODO: createNewTask
+    async createNewTask () {
+      await this.$store.dispatch('createTask', {
+        title: this.title,
+        date: this.date,
+        text: this.text,
+        status: 'progress'
+      })
+
+      this.$router.push('/')
     }
   }
 }

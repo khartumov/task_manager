@@ -119,9 +119,11 @@ export default {
     invalidFeedback () {
       if (this.title.length > 5) {
         return ''
-      } else if (this.title.length >= 0) {
+      }
+      else if (this.title.length >= 0) {
         return 'Минимум 5 символов'
-      } else {
+      }
+      else {
         return 'Введите название'
       }
     }
