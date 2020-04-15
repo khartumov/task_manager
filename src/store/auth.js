@@ -13,8 +13,9 @@ export default {
       //   throw e
       // }
     },
-    logout () {
-      // TODO
+
+    async logout () {
+      await firebase.auth().signOut()
     }
   }
 }

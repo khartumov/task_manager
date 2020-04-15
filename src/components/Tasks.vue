@@ -128,8 +128,13 @@ export default {
       this.filterOptions.status = selectedStatus
     },
 
-    logout () {
-      // TODO: logout
+    async logout () {
+      try {
+        await this.$store.dispatch('logout')
+
+        // TODO: error message
+        this.$router.push('/login')
+      } catch (error) {}
     }
   }
 }
