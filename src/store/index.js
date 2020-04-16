@@ -42,6 +42,14 @@ export default new Vuex.Store({
       const task = firebase.database().ref(`/users/${userID}/tasks`).push({ title, date, status, text })
 
       return { title, date, status, text, id: task.key }
+    },
+
+    async fetchTasks ({ dispatch }) {
+      const userID = await dispatch('getUserId')
+      const tasksObject = await firebase.database().ref(`/users/${userID}/tasks`).once('value')
+      const tasks = Object.entries(tasksObject.val()).map((task) => ({ ...task[1], id: task[0] }))
+
+      return tasks
     }
   }
 })

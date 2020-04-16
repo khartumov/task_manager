@@ -63,47 +63,7 @@ export default {
 
   data () {
     return {
-      tasks: [
-        {
-          id: 1,
-          title: 'Первая задача',
-          date: new Date(2020, 7, 7),
-          status: 'progress',
-          text: 'По своей сути **рыбатекст** является альтернативой традиционному *lorem ipsum*, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.'
-        },
-        {
-          id: 2,
-          title: 'Вторая задача',
-          date: new Date(2020, 3, 7),
-          status: 'expired',
-          text: 'test text'
-        },
-        {
-          id: 3,
-          title: 'Третья задача',
-          date: new Date(2020, 2, 6),
-          status: 'completed',
-          text: '*Дедуктивный*\nметод\nрешительно\nпредставляет\nсобой\nбабувизм.\nОтсюда\nестественно\nследует,\nчто\nавтоматизация\nдискредитирует\nпредмет\nдеятельности.'
-        },
-        {
-          id: 4,
-          title: 'Выучить JS',
-          date: new Date(2020, 8, 23),
-          status: 'progress'
-        },
-        {
-          id: 5,
-          title: 'Бинарный поиск',
-          date: new Date(2020, 8, 23),
-          status: 'completed'
-        },
-        {
-          id: 6,
-          title: 'Выучить алгоритмы',
-          date: new Date(2020, 9, 23),
-          status: 'completed'
-        }
-      ],
+      tasks: [],
       filterOptions: {
         text: '',
         status: null
@@ -135,7 +95,15 @@ export default {
         // TODO: error message
         this.$router.push('/login')
       } catch (error) {}
+    },
+
+    async getTasks () {
+      this.tasks = await this.$store.dispatch('fetchTasks')
     }
+  },
+
+  mounted () {
+    this.getTasks()
   }
 }
 </script>
