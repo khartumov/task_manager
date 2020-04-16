@@ -1,19 +1,19 @@
 <template>
   <div class="singletask">
-    <h1 class="title">{{ $route.params.title }}</h1>
+    <h1 class="title">{{ task.title }}</h1>
     <b-container class="py-3">
       <b-row>
         <b-col
           lg="10"
           offset-lg="1"
         >
-          <p class="singletask__row singletask__date"><strong>Дедлайн</strong><em>{{$route.params.date | date}}</em></p>
-          <p class="singletask__row singletask__status"><strong>Статус</strong><em>{{$route.params.status | status}}</em></p>
-          <template v-if="$route.params.text">
+          <p class="singletask__row singletask__date"><strong>Дедлайн</strong><em>{{task.date }}</em></p>
+          <p class="singletask__row singletask__status"><strong>Статус</strong><em>{{task.status | status}}</em></p>
+          <template v-if="task.text">
             <strong>Описание</strong>
             <div class="singletask__text my-3">
               <vue-simple-markdown
-                :source="$route.params.text"
+                :source="task.text"
               />
             </div>
           </template>
@@ -50,6 +50,12 @@
 export default {
   name: 'singletask',
 
+  data () {
+    return {
+      task: {}
+    }
+  },
+
   methods: {
     completeTask () {
       // TODO: completeTask
@@ -58,15 +64,19 @@ export default {
     editTask () {
       this.$router.push({
         name: 'edittask',
-        params: {
-          id: this.$route.params.id,
-          title: this.$route.params.title,
-          date: this.$route.params.date,
-          status: this.$route.params.status,
-          text: this.$route.params.text
-        }
+        params: this.task
       })
+    },
+
+    async getTask () {
+      const task = await this.$store.dispatch('fetchTask', this.$route.params.id)
+
+      this.task = { ...task }
     }
+  },
+
+  mounted () {
+    this.getTask()
   }
 }
 </script>
