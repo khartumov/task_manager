@@ -16,7 +16,7 @@
             <b-form-input
               id="edittask__title"
               ref="taskTitle"
-              v-model="title"
+              v-model="task.title"
               :state="titleState"
               trim
             />
@@ -28,7 +28,7 @@
           >
             <b-form-datepicker
               id="edittask__date"
-              v-model="date"
+              v-model="task.date"
               :state="dateState"
             />
           </b-form-group>
@@ -38,7 +38,7 @@
             label-for="edittask__status"
           >
             <b-form-select
-              v-model="status"
+              v-model="task.status"
               :options="statusList"
             />
           </b-form-group>
@@ -49,7 +49,7 @@
           >
             <markdown-editor
               id="edittask__editor"
-              v-model="editor"
+              v-model="task.editor"
               toolbar="bold italic heading | undo redo | link numlist bullist | fullscreen"
             />
           </b-form-group>
@@ -91,10 +91,12 @@ export default {
 
   data () {
     return {
-      title: this.$route.params.title,
-      date: this.$route.params.date,
-      editor: this.$route.params.text,
-      status: this.$route.params.status,
+      task: {
+        title: '',
+        date: '',
+        status: '',
+        text: ''
+      },
       statusList: [
         {
           value: 'progress',
@@ -109,18 +111,18 @@ export default {
   },
   computed: {
     titleState () {
-      return this.title === '' ? null : this.title.length >= 5
+      return this.task.title === '' ? null : this.task.title.length >= 5
     },
 
     dateState () {
-      return this.date !== '' ? true : null
+      return this.task.date !== '' ? true : null
     },
 
     invalidFeedback () {
-      if (this.title.length > 5) {
+      if (this.task.title.length > 5) {
         return ''
       }
-      else if (this.title.length >= 0) {
+      else if (this.task.title.length >= 0) {
         return 'Минимум 5 символов'
       }
       else {
@@ -130,12 +132,27 @@ export default {
   },
 
   mounted () {
+    this.getTask()
     this.$refs.taskTitle.focus()
   },
 
   methods: {
-    saveChanges () {
-      // TODO: saveChanges
+    async getTask () {
+      const task = await this.$store.dispatch('fetchTask', this.$route.params.id)
+
+      this.task = { ...task }
+    },
+
+    async saveChanges () {
+      await this.$store.dispatch('updateTask', {
+        title: this.task.title,
+        date: this.task.date,
+        text: this.task.text,
+        status: this.task.status,
+        id: this.$route.params.id
+      })
+
+      this.$router.push(`/${this.$route.params.id}`)
     }
   }
 }

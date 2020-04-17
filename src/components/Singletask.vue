@@ -69,8 +69,6 @@ export default {
         status: 'completed',
         id: this.$route.params.id
       })
-
-      this.$router.push('/')
     },
 
     editTask () {
