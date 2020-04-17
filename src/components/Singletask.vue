@@ -19,11 +19,13 @@
           </template>
           <div class="singletask__buttons">
             <b-button
+              v-if="task.status !== 'completed'"
               @click="completeTask"
             >
               Завершить задачу
             </b-button>
             <b-button
+              class="ml-auto"
               @click="editTask"
             >
               Редактировать задачу
@@ -57,8 +59,18 @@ export default {
   },
 
   methods: {
-    completeTask () {
-      // TODO: completeTask
+    async completeTask () {
+      this.task.status = 'completed'
+
+      await this.$store.dispatch('updateTask', {
+        title: this.task.title,
+        date: this.task.date,
+        text: this.task.text,
+        status: 'completed',
+        id: this.$route.params.id
+      })
+
+      this.$router.push('/')
     },
 
     editTask () {
