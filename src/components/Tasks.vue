@@ -17,8 +17,8 @@
       </b-row>
       <b-row>
         <b-col
-          lg="10"
-          offset-lg="1"
+          md="10"
+          offset-md="1"
         >
           <TaskList :tasks="filteredTasks" />
         </b-col>

@@ -55,6 +55,10 @@ export default {
         text-decoration: none;
         color: #2c3e50;
       }
+
+      @media (max-width: 992px) {
+        flex-direction: column;
+      }
     }
 
     &__title {
@@ -65,6 +69,10 @@ export default {
       display: flex;
       justify-content: space-between;
       width: 200px;
+
+      @media (max-width: 992px) {
+        width: 100%;
+      }
     }
   }
 </style>

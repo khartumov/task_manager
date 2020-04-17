@@ -31,6 +31,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 37px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
 }
 
 .title {
@@ -54,12 +58,19 @@ body {
 
   @media (max-width: 768px) {
     height: 45px;
-    width: 45px;
+    width: 50%;
+    border-radius: 0;
+    bottom: 0;
+    right: 0;
   }
 
   &_back {
     right: auto;
     left: 40px;
+
+    @media (max-width: 768px) {
+      left: 0;
+    }
   }
 
   &_grey {
