@@ -103,12 +103,17 @@ export default {
           text: 'В работе'
         },
         {
+          value: 'expired',
+          text: 'Просрочена'
+        },
+        {
           value: 'completed',
           text: 'Завершена'
         }
       ]
     }
   },
+
   computed: {
     titleState () {
       return this.task.title === '' ? null : this.task.title.length >= 5
@@ -144,6 +149,14 @@ export default {
     },
 
     async saveChanges () {
+      if (new Date(this.task.date) < new Date() && this.task.status === 'progress') {
+        this.task.status = 'expired'
+      }
+
+      if (new Date(this.task.date) > new Date() && this.task.status === 'expired') {
+        this.task.status = 'progress'
+      }
+
       await this.$store.dispatch('updateTask', {
         title: this.task.title,
         date: this.task.date,

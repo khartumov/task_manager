@@ -1,8 +1,8 @@
 function statusFilter (status) {
   const options = {
     progress: 'В работе',
-    expired: 'Просрочен',
-    completed: 'Завершен'
+    expired: 'Просрочена',
+    completed: 'Завершена'
   }
 
   return options[status]
