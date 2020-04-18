@@ -60,15 +60,17 @@ export default {
 
   methods: {
     async completeTask () {
-      this.task.status = 'completed'
+      try {
+        this.task.status = 'completed'
 
-      await this.$store.dispatch('updateTask', {
-        title: this.task.title,
-        date: this.task.date,
-        text: this.task.text,
-        status: 'completed',
-        id: this.$route.params.id
-      })
+        await this.$store.dispatch('updateTask', {
+          title: this.task.title,
+          date: this.task.date,
+          text: this.task.text,
+          status: 'completed',
+          id: this.$route.params.id
+        })
+      } catch (e) {}
     },
 
     editTask () {
@@ -79,9 +81,11 @@ export default {
     },
 
     async getTask () {
-      const task = await this.$store.dispatch('fetchTask', this.$route.params.id)
+      try {
+        const task = await this.$store.dispatch('fetchTask', this.$route.params.id)
 
-      this.task = { ...task }
+        this.task = { ...task }
+      } catch (error) {}
     }
   },
 

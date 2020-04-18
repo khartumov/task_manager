@@ -105,14 +105,17 @@ export default {
 
   methods: {
     async createNewTask () {
-      await this.$store.dispatch('createTask', {
-        title: this.title,
-        date: this.date,
-        text: this.text,
-        status: 'progress'
-      })
+      try {
+        await this.$store.dispatch('createTask', {
+          title: this.title,
+          date: this.date,
+          text: this.text,
+          status: 'progress'
+        })
 
-      this.$router.push('/')
+        this.$router.push('/')
+
+      } catch (error) {}
     }
   }
 }

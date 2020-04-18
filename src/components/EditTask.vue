@@ -157,15 +157,17 @@ export default {
         this.task.status = 'progress'
       }
 
-      await this.$store.dispatch('updateTask', {
-        title: this.task.title,
-        date: this.task.date,
-        text: this.task.text,
-        status: this.task.status,
-        id: this.$route.params.id
-      })
+      try {
+        await this.$store.dispatch('updateTask', {
+          title: this.task.title,
+          date: this.task.date,
+          text: this.task.text,
+          status: this.task.status,
+          id: this.$route.params.id
+        })
 
-      this.$router.push(`/${this.$route.params.id}`)
+        this.$router.push(`/${this.$route.params.id}`)
+      } catch (error) {}
     }
   }
 }
