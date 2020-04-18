@@ -1,4 +1,7 @@
-# task_manager
+# Task_manager
+
+Simple task manager based on Vue.
+If you want fork this project you have to use your own firebaseConfig.js
 
 ## Project setup
 ```
@@ -14,16 +17,3 @@ yarn run serve
 ```
 yarn run build
 ```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
