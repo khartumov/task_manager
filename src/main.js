@@ -15,7 +15,8 @@ import {
   FormInputPlugin,
   FormDatepickerPlugin,
   FormSelectPlugin,
-  TooltipPlugin
+  TooltipPlugin,
+  AlertPlugin
 } from 'bootstrap-vue'
 
 import dateFilter from '@/filters/dateFilter'
@@ -42,6 +43,7 @@ Vue.use(FormInputPlugin)
 Vue.use(FormDatepickerPlugin)
 Vue.use(FormSelectPlugin)
 Vue.use(TooltipPlugin)
+Vue.use(AlertPlugin)
 
 Vue.use(Editor)
 Vue.use(VueSimpleMarkdown)

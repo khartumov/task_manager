@@ -6,29 +6,13 @@ import firebase from 'firebase/app'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
   actions: {
     async login ({ dispatch }, { email, password }) {
-      try {
-        await firebase.auth().signInWithEmailAndPassword(email, password)
-      }
-      catch (e) {
-        console.log(e)
-        throw e
-      }
+      await firebase.auth().signInWithEmailAndPassword(email, password)
     },
 
     async logout () {
-      try {
-        await firebase.auth().signOut()
-      }
-      catch (e) {
-        console.log(e)
-        throw e
-      }
+      await firebase.auth().signOut()
     },
 
     getUserId () {

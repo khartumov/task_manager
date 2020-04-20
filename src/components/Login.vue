@@ -7,6 +7,14 @@
           lg="10"
           offset-lg="1"
         >
+          <b-alert
+            :show="alertCountDown"
+            dismissible
+            variant="danger"
+            @dismissed="alertCountDown = 0"
+          >
+            {{ errorText }}
+          </b-alert>
           <form action="">
             <b-form-group
               class="login__label"
@@ -53,7 +61,9 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      alertCountDown: 0,
+      errorText: ''
     }
   },
 
@@ -67,9 +77,24 @@ export default {
       try {
         await this.$store.dispatch('login', formData)
 
-        // TODO: error message
         this.$router.push('/')
-      } catch (error) {}
+      } catch (error) {
+        this.showAlert(error)
+      }
+    },
+
+    showAlert ({ code }) {
+      if (code === 'auth/invalid-email') {
+        this.errorText = 'Неправильный email!'
+      }
+      else if (code === 'auth/wrong-password') {
+        this.errorText = 'Неправильный пароль!'
+      }
+      else {
+        this.errorText = 'Возникла ошибка при авторизации! Пожалуйста, введите корректный логин / пароль.'
+      }
+
+      this.alertCountDown = 3
     }
   },
 

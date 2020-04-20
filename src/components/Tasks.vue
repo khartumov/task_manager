@@ -92,7 +92,6 @@ export default {
       try {
         await this.$store.dispatch('logout')
 
-        // TODO: error message
         this.$router.push('/login')
       } catch (error) {}
     },
