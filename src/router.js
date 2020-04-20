@@ -17,6 +17,7 @@ const router = new Router({
       path: '/',
       name: 'tasks',
       meta: {
+        title: 'Список задач',
         auth: true
       },
       component: Tasks
@@ -25,6 +26,7 @@ const router = new Router({
       path: '/newtask',
       name: 'newtask',
       meta: {
+        title: 'Новая задача',
         auth: true
       },
       component: Newtask
@@ -32,12 +34,16 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
+      meta: {
+        title: 'Авторизация'
+      },
       component: Login
     },
     {
       path: '/:id',
       name: 'singletask',
       meta: {
+        title: 'Задача',
         auth: true
       },
       component: Singletask
@@ -46,6 +52,7 @@ const router = new Router({
       path: '/:id/edit',
       name: 'edittask',
       meta: {
+        title: 'Редактирование задачи',
         auth: true
       },
       component: EditTask
@@ -55,13 +62,16 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
-  const isAuthRequired = to.matched.some((route) => route.meta.auth)
+  const isAuthRequired = to.matched.some(route => route.meta.auth)
+  const metaTitle = to.matched.map(route => route.meta.title)[0]
 
   if (isAuthRequired && !currentUser) {
     next('/login')
   } else {
     next()
   }
+
+  document.title = metaTitle || 'Менеджер задач'
 })
 
 export default router

@@ -1,4 +1,4 @@
-# Task_manager
+# Task manager
 
 Simple task manager based on Vue.
 If you want fork this project you have to use your own firebaseConfig.js

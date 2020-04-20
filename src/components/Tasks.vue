@@ -26,6 +26,8 @@
       <button
         class="round-button round-button_back round-button_grey"
         @click="logout"
+        v-b-tooltip.hover
+        title="Выйти"
       >
         <b-icon
           class="round-button__icon round-button__icon_grey"
@@ -36,6 +38,8 @@
       <router-link
         to="/newtask"
         class="round-button"
+        v-b-tooltip.hover
+        title="Добавить задачу"
       >
         <b-icon
           class="round-button__icon"

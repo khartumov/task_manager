@@ -54,6 +54,8 @@
       <router-link
         to="/"
         class="round-button round-button_back"
+        v-b-tooltip.hover
+        title="Назад"
       >
         <b-icon
           class="round-button__icon"
