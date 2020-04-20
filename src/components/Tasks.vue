@@ -1,7 +1,22 @@
 <template>
   <div>
     <h1 class="title">Список задач</h1>
-    <b-container class="tasks pt-3">
+    <div
+      v-if="tasks.length === 0 && !isFetching"
+      class="mt-3 text-center"
+    >
+      <p>У вас пока нет задач. Самое время их добавить.</p>
+      <b-button
+        class="mt-1"
+        @click="addNewTask"
+      >
+        Добавить задачу
+      </b-button>
+    </div>
+    <b-container
+      v-else
+      class="tasks pt-3"
+    >
       <b-row>
         <b-col
           md="6"
@@ -71,7 +86,8 @@ export default {
       filterOptions: {
         text: '',
         status: null
-      }
+      },
+      isFetching: false
     }
   },
 
@@ -101,7 +117,13 @@ export default {
     },
 
     async getTasks () {
+      this.isFetching = true
       this.tasks = await this.$store.dispatch('fetchTasks')
+      this.isFetching = false
+    },
+
+    addNewTask () {
+      this.$router.push('/newtask')
     }
   },
 
