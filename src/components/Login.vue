@@ -20,11 +20,13 @@
               class="login__label"
               label="Введите email"
               label-for="login__email"
+              :invalid-feedback="invalidFeedback"
             >
               <b-form-input
                 id="login__email"
                 ref="email"
                 v-model.trim="email"
+                :state="emailState"
                 type="email"
                 trim
               />
@@ -43,6 +45,7 @@
             </b-form-group>
             <b-button
               class="text-left mt-3"
+              :disabled="!emailState"
               @click="login"
             >
               Войти
@@ -64,6 +67,22 @@ export default {
       password: '',
       alertCountDown: 0,
       errorText: ''
+    }
+  },
+
+  computed: {
+    emailState () {
+      const regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i // eslint-disable-line
+
+      return this.email === '' ? null : regExp.test(this.email)
+    },
+
+    invalidFeedback () {
+      if (!this.emailState) {
+        return 'Введите корректный email'
+      }
+
+      return ''
     }
   },
 

@@ -63,7 +63,6 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
   const isAuthRequired = to.matched.some(route => route.meta.auth)
-  const metaTitle = to.matched.map(route => route.meta.title)[0]
 
   if (isAuthRequired && !currentUser) {
     next('/login')
@@ -71,7 +70,7 @@ router.beforeEach((to, from, next) => {
     next()
   }
 
-  document.title = metaTitle || 'Менеджер задач'
+  document.title = to.meta.title || 'Менеджер задач'
 })
 
 export default router
