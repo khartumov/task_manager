@@ -49,7 +49,7 @@
           >
             <markdown-editor
               id="edittask__editor"
-              v-model="task.editor"
+              v-model="task.text"
               toolbar="bold italic heading | undo redo | link numlist bullist | fullscreen"
             />
           </b-form-group>
