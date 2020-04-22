@@ -61,7 +61,7 @@
           </b-button>
         </b-col>
       </b-row>
-      <router-link
+      <RoundButton
         :to="{
           name: 'singletask',
           params: {
@@ -72,24 +72,23 @@
             text: $route.params.text
           }
         }"
-        class="round-button round-button_back"
-        v-b-tooltip.hover
-        title="Назад"
-      >
-        <b-icon
-          class="round-button__icon"
-          icon="arrow-left"
-          font-scale="2"
-        />
-      </router-link>
+        icon="arrow-left"
+        :isBack="true"
+        tooltip="Назад"
+      />
     </b-container>
   </div>
 </template>
 
 <script>
+import RoundButton from '@/components/RoundButton'
 
 export default {
   name: 'edittask',
+
+  components: {
+    RoundButton
+  },
 
   data () {
     return {

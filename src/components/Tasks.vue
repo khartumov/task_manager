@@ -38,30 +38,18 @@
           <TaskList :tasks="filteredTasks" />
         </b-col>
       </b-row>
-      <button
-        class="round-button round-button_back round-button_grey"
-        @click="logout"
-        v-b-tooltip.hover
-        title="Выйти"
-      >
-        <b-icon
-          class="round-button__icon round-button__icon_grey"
-          icon="box-arrow-left"
-          font-scale="2"
-        />
-      </button>
-      <router-link
+      <RoundButton
+        icon="box-arrow-left"
+        :isGrey="true"
+        :isBack="true"
+        tooltip="Выйти"
+        @click.native="logout"
+      />
+      <RoundButton
+        icon="plus"
         to="/newtask"
-        class="round-button"
-        v-b-tooltip.hover
-        title="Добавить задачу"
-      >
-        <b-icon
-          class="round-button__icon"
-          icon="plus"
-          font-scale="2"
-        />
-      </router-link>
+        tooltip="Добавить задачу"
+      />
     </b-container>
   </div>
 </template>
@@ -70,6 +58,7 @@
 import TaskList from '@/components/TaskList'
 import Search from '@/components/Search'
 import SelectStatus from '@/components/SelectStatus'
+import RoundButton from '@/components/RoundButton'
 
 export default {
   name: 'tasks',
@@ -77,7 +66,8 @@ export default {
   components: {
     TaskList,
     Search,
-    SelectStatus
+    SelectStatus,
+    RoundButton
   },
 
   data () {
